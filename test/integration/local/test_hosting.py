@@ -42,4 +42,4 @@ def test_hosting(docker_image, sagemaker_local_session, local_instance_type):
             output = predictor.predict(input)
             assert input == output
         finally:
-            sagemaker_local_session.delete_endpoint(model.endpoint_name)
+            predictor.delete_endpoint()
