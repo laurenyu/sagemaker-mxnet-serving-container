@@ -41,7 +41,7 @@ print('Executing docker login command: '.format(login_cmd))
 subprocess.check_call(login_cmd.split())
 
 for arch in ['cpu', 'gpu']:
-    for py_version in ['2', '3']:
+    for py_version in ['2.7', '3.6']:
         tag = '{}-{}-py{}'.format(args.version, arch, py_version)
         dest = '{}:{}'.format(args.repo, tag)
         prev_image_uri = '{}.dkr.ecr.{}.amazonaws.com/{}'.format(args.account, args.region, dest)
