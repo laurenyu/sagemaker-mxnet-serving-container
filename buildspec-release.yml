@@ -21,7 +21,7 @@ phases:
   build:
     commands:
       # prepare the release (update versions, changelog etc.)
-      - git-release --prepare
+      - git-release --prepare --min-version 1.0.0
 
       # run linter
       - tox -e flake8
@@ -29,7 +29,7 @@ phases:
       # run unit tests
       - tox -e py27,py36 test/unit
 
-      # create pip archive (tar_name will be something like sagemaker_mxnet_serving_container-1.0.0.tar.gz)
+      # create pip archive (tar name will be something like sagemaker_mxnet_serving_container-1.0.0.tar.gz)
       - python3 setup.py sdist
 
       # build images
