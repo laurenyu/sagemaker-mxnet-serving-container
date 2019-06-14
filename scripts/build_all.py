@@ -42,7 +42,7 @@ subprocess.check_call(login_cmd.split())
 
 for arch in ['cpu', 'gpu']:
     for py_version in ['2.7', '3.6']:
-        tag = '{}-{}-py{}'.format(args.version, arch, py_version)
+        tag = '{}-{}-py{}'.format(args.version, arch, py_version[0])
         dest = '{}:{}'.format(args.repo, tag)
         prev_image_uri = '{}.dkr.ecr.{}.amazonaws.com/{}'.format(args.account, args.region, dest)
         dockerfile = os.path.join(build_dir, 'Dockerfile.{}'.format(arch))
