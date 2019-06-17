@@ -12,7 +12,6 @@
 #  permissions and limitations under the License.
 from __future__ import absolute_import
 
-import json
 import os
 
 from sagemaker.mxnet.model import MXNetModel
@@ -34,7 +33,7 @@ def test_hosting(docker_image, sagemaker_local_session, local_instance_type):
                        image=docker_image,
                        sagemaker_session=sagemaker_local_session)
 
-    input = json.dumps({'some': 'json'})
+    input = 'some data'
 
     with local_mode_utils.lock():
         try:
