@@ -34,12 +34,17 @@ def test_hosting(docker_image, sagemaker_local_session, local_instance_type):
                        image=docker_image,
                        sagemaker_session=sagemaker_local_session)
 
-    input = 'some data'
+    input = json.dumps('some data')
 
     with local_mode_utils.lock():
         try:
             predictor = model.deploy(1, local_instance_type)
+            predictor.serializer = None
+            predictor.deserializer = None
+            predictor.accept = None
+            predictor.content_type = None
+
             output = predictor.predict(input)
-            assert input == json.loads(output)
+            assert input == output
         finally:
             predictor.delete_endpoint()
