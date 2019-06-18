@@ -40,7 +40,7 @@ def test_hosting(docker_image, sagemaker_local_session, local_instance_type):
         try:
             predictor = model.deploy(1, local_instance_type)
             predictor.serializer = None
-            predictor.deserializer = StringDeserializer
+            predictor.deserializer = StringDeserializer()
             predictor.accept = None
             predictor.content_type = None
 
